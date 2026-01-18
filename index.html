@@ -1,583 +1,752 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BASTOS | Luxury Jewelry & Gifts Since 1837</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&display=swap');
+
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        color: #000;
+        background: white;
+    }
+
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: white;
+        z-index: 1000;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .nav-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 50px;
+    }
+
+    .logo {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 22px;
+        letter-spacing: 0.263em;
+        color: #06132E;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 35px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: #000;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover {
+        opacity: 0.6;
+    }
+
+    .nav-icons {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+    }
+
+    .nav-icons a {
+        font-size: 12px;
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    .nav-icons a:hover {
+        opacity: 0.6;
+    }
+
+    .cart-count {
+        background: #06132E;
+        color: white;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        margin-left: 5px;
+    }
+
+    /* Hero Video Section */
+    .hero {
+        margin-top: 57px;
+        position: relative;
+        height: 85vh;
+        background: #06132E;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+
+    .hero-video-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #06132E 0%, #0a1f4d 50%, #06132E 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.3);
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .hero-content {
+        text-align: center;
+        color: white;
+        z-index: 2;
+        position: relative;
+    }
+
+    .hero-subtitle {
+        font-size: 13px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        font-weight: 300;
+    }
+
+    .hero-title {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 48px;
+        letter-spacing: 0.263em;
+        margin-bottom: 35px;
+        line-height: 1.2;
+        font-weight: 400;
+    }
+
+    .hero-cta {
+        display: inline-block;
+        padding: 14px 40px;
+        background: white;
+        color: #06132E;
+        text-decoration: none;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        font-weight: 600;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .hero-cta:hover {
+        background: #f5f5f5;
+    }
+
+    /* Product Carousel */
+    .carousel-section {
+        padding: 70px 50px;
+        background: white;
+    }
+
+    .carousel-header {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .carousel-header h2 {
+        font-size: 13px;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+        font-weight: 300;
+        color: #666;
+    }
+
+    .carousel-header .main-title {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 32px;
+        letter-spacing: 0.15em;
+        margin-bottom: 0;
+        font-weight: 400;
+        color: #000;
+    }
+
+    .product-carousel {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 15px;
+        max-width: 1600px;
+        margin: 0 auto 40px;
+    }
+
+    .product-item {
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .product-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-image {
+        width: 100%;
+        aspect-ratio: 1/1;
+        background: #f9f9f9;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 9px;
+        letter-spacing: 1.5px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .product-collection {
+        font-size: 10px;
+        letter-spacing: 1px;
+        color: #666;
+        margin-bottom: 6px;
+    }
+
+    .product-name {
+        font-size: 13px;
+        margin-bottom: 6px;
+        font-weight: 400;
+        line-height: 1.3;
+        color: #000;
+    }
+
+    .product-price {
+        font-size: 13px;
+        color: #000;
+        font-weight: 400;
+    }
+
+    /* Product Detail Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 2000;
+        overflow-y: auto;
+    }
+
+    .modal.active {
+        display: block;
+    }
+
+    .modal-content {
+        background: white;
+        max-width: 1200px;
+        margin: 50px auto;
+        position: relative;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 10;
+        color: #000;
+        background: white;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .modal-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        padding: 50px;
+    }
+
+    .modal-images {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .modal-main-image {
+        width: 100%;
+        aspect-ratio: 1/1;
+        background: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 12px;
+    }
+
+    .modal-thumbnails {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .modal-thumbnail {
+        aspect-ratio: 1/1;
+        background: #f9f9f9;
+        cursor: pointer;
+        border: 2px solid transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 8px;
+        color: #ccc;
+    }
+
+    .modal-thumbnail.active {
+        border-color: #06132E;
+    }
+
+    .modal-info {
+        padding: 20px 0;
+    }
+
+    .modal-collection {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .modal-title {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 28px;
+        letter-spacing: 0.1em;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+
+    .modal-price {
+        font-size: 18px;
+        margin-bottom: 30px;
+        font-weight: 500;
+    }
+
+    .modal-description {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #666;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .modal-details {
+        margin-bottom: 30px;
+    }
+
+    .modal-details h3 {
+        font-size: 13px;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .modal-details ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .modal-details li {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .btn-add-cart {
+        flex: 1;
+        padding: 16px 30px;
+        background: #06132E;
+        color: white;
+        border: none;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s;
+    }
+
+    .btn-add-cart:hover {
+        background: #0a1842;
+    }
+
+    .btn-stores {
+        padding: 16px 30px;
+        background: white;
+        color: #06132E;
+        border: 1px solid #06132E;
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+
+    .btn-stores:hover {
+        background: #06132E;
+        color: white;
+    }
+
+    .store-finder {
+        display: none;
+        padding: 20px;
+        background: #f9f9f9;
+        margin-bottom: 20px;
+    }
+
+    .store-finder.active {
+        display: block;
+    }
+
+    .store-finder h4 {
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .store-item {
+        background: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .store-name {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .store-address {
+        font-size: 12px;
+        color: #666;
+        line-height: 1.6;
+    }
+
+    /* Cart Modal */
+    .cart-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100%;
+        background: white;
+        z-index: 2001;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s;
+    }
+
+    .cart-modal.active {
+        display: block;
+        right: 0;
+    }
+
+    .cart-header {
+        padding: 20px;
+        border-bottom: 1px solid #e5e5e5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart-header h3 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .cart-close {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .cart-items {
+        padding: 20px;
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
+
+    .cart-item {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .cart-item-image {
+        width: 80px;
+        height: 80px;
+        background: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 8px;
+        color: #ccc;
+    }
+
+    .cart-item-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .cart-item-name {
+        font-size: 12px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .cart-item-remove {
+        font-size: 11px;
+        color: #666;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .cart-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        border-top: 1px solid #e5e5e5;
+        background: white;
+    }
+
+    .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .cart-checkout {
+        width: 100%;
+        padding: 16px;
+        background: #06132E;
+        color: white;
+        border: none;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .cart-empty {
+        text-align: center;
+        padding: 60px 20px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    /* Category Grid */
+    .category-section {
+        padding: 70px 50px;
+        background: #fafafa;
+    }
+
+    .section-title {
+        text-align: center;
+        font-family: 'Playfair Display SC', serif;
+        font-size: 32px;
+        letter-spacing: 0.15em;
+        margin-bottom: 50px;
+        font-weight: 400;
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        max-width: 1600px;
+        margin: 0 auto;
+        background: white;
+    }
+
+    .category-item {
+        position: relative;
+        aspect-ratio: 3/4;
+        background: #f5f5f5;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .category-image {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ccc;
+        font-size: 11px;
+        letter-spacing: 2px;
+        transition: transform 0.5s;
+    }
+
+    .category-item:hover .category-image {
+        transform: scale(1.05);
+    }
+
+    .category-info {
+        position: absolute;
+        bottom: 40px;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+
+    .category-name {
+        font-size: 16px;
+        letter-spacing: 2px;
+        color: #000;
+        margin-bottom: 12px;
+        font-weight: 400;
+    }
+
+    .category-count {
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .category-link {
+        font-size: 11px;
+        letter-spacing: 1px;
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid #000;
+        padding-bottom: 2px;
+        font-weight: 500;
+    }
+
+    /* Statement Banner */
+    .statement-banner {
+        background: #06132E;
+        color: white;
+        padding: 90px 50px;
+        text-align: center;
+    }
+
+    .statement-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .statement-content h2 {
+        font-family: 'Playfair Display SC', serif;
+        font-size: 38px;
+        letter-spacing: 0.1em;
+        margin-bottom: 25px;
+        line-height: 1.3;
+        font-weight: 400;
+    }
+
+    .statement-content p {
+        font-size: 14px;
+        line-height: 1.8;
+        letter-spacing: 0.3px;
+        opacity: 0.9;
+        margin-bottom: 35px;
+        font-weight: 300;
+    }
+
+    @media (max-width: 1024px) {
+        .product-carousel {
+            grid-template-columns: repeat(3, 1fr);
         }
 
-        body {
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #000;
-            background: white;
+        .modal-body {
+            grid-template-columns: 1fr;
         }
+    }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: white;
-            z-index: 1000;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .nav-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 50px;
-        }
-
-        .logo {
-            font-family: 'Playfair Display SC', serif;
-            font-size: 22px;
-            letter-spacing: 0.263em;
-            color: #06132E;
-            font-weight: 400;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #000;
-            text-decoration: none;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-            transition: opacity 0.2s;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.6;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-icons a {
-            font-size: 12px;
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .nav-icons a:hover {
-            opacity: 0.6;
-        }
-
-        .cart-count {
-            background: #06132E;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            margin-left: 5px;
-        }
-
-        /* Hero Video Section */
-        .hero {
-            margin-top: 70px;
-            position: relative;
-            height: 85vh;
-            background: #06132E;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            text-align: center;
-            color: white;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 13px;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .hero-subtitle {
-            font-family: 'Playfair Display SC', serif;
-            font-size: 48px;
-            letter-spacing: 0.263em;
-            margin-bottom: 35px;
-            line-height: 1.2;
-            font-weight: 400;
-        }
-
-        .hero-cta {
-            display: inline-block;
-            padding: 14px 40px;
-            background: white;
-            color: #06132E;
-            text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .hero-cta:hover {
-            background: #f5f5f5;
-        }
-
-        /* Product Carousel */
-        .carousel-section {
-            padding: 70px 50px;
-            background: white;
-        }
-
-        .carousel-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .carousel-header h2 {
-            font-size: 13px;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            font-weight: 300;
-            color: #666;
-        }
-
-        .carousel-header .main-title {
-            font-family: 'Playfair Display SC', serif;
-            font-size: 32px;
-            letter-spacing: 0.15em;
-            margin-bottom: 0;
-            font-weight: 400;
-            color: #000;
+    @media (max-width: 768px) {
+        .category-grid {
+            grid-template-columns: 1fr;
         }
 
         .product-carousel {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 15px;
-            max-width: 1600px;
-            margin: 0 auto 40px;
+            grid-template-columns: repeat(2, 1fr);
         }
 
-        .product-item {
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
+        .nav-links {
+            display: none;
         }
 
-        .product-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100%;
-            aspect-ratio: 1/1;
-            background: #f9f9f9;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ccc;
-            font-size: 9px;
-            letter-spacing: 1.5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-collection {
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: #666;
-            margin-bottom: 6px;
-        }
-
-        .product-name {
-            font-size: 13px;
-            margin-bottom: 6px;
-            font-weight: 400;
-            line-height: 1.3;
-            color: #000;
-        }
-
-        .product-price {
-            font-size: 13px;
-            color: #000;
-            font-weight: 400;
-        }
-
-        .carousel-cta {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .carousel-cta a {
-            display: inline-block;
-            padding: 14px 40px;
-            background: white;
-            color: #000;
-            text-decoration: none;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-            border: 1px solid #000;
-            transition: all 0.3s;
-        }
-
-        .carousel-cta a:hover {
-            background: #000;
-            color: white;
-        }
-
-        /* Category Grid */
-        .category-section {
-            padding: 70px 50px;
-            background: #fafafa;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Playfair Display SC', serif;
+        .hero-title {
             font-size: 32px;
-            letter-spacing: 0.15em;
-            margin-bottom: 50px;
-            font-weight: 400;
         }
 
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            max-width: 1600px;
-            margin: 0 auto;
-            background: white;
-        }
-
-        .category-item {
-            position: relative;
-            aspect-ratio: 3/4;
-            background: #f5f5f5;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .category-image {
+        .cart-modal {
             width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ccc;
-            font-size: 11px;
-            letter-spacing: 2px;
-            transition: transform 0.5s;
+            right: -100%;
         }
+    }
+</style>
+```
 
-        .category-item:hover .category-image {
-            transform: scale(1.05);
-        }
-
-        .category-info {
-            position: absolute;
-            bottom: 40px;
-            left: 0;
-            right: 0;
-            text-align: center;
-        }
-
-        .category-name {
-            font-size: 16px;
-            letter-spacing: 2px;
-            color: #000;
-            margin-bottom: 12px;
-            font-weight: 400;
-        }
-
-        .category-count {
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .category-link {
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: #000;
-            text-decoration: none;
-            border-bottom: 1px solid #000;
-            padding-bottom: 2px;
-            font-weight: 500;
-        }
-
-        /* Statement Banner */
-        .statement-banner {
-            background: #06132E;
-            color: white;
-            padding: 90px 50px;
-            text-align: center;
-        }
-
-        .statement-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .statement-content h2 {
-            font-family: 'Playfair Display SC', serif;
-            font-size: 38px;
-            letter-spacing: 0.1em;
-            margin-bottom: 25px;
-            line-height: 1.3;
-            font-weight: 400;
-        }
-
-        .statement-content p {
-            font-size: 14px;
-            line-height: 1.8;
-            letter-spacing: 0.3px;
-            opacity: 0.9;
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        /* Services */
-        .services {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            padding: 70px 50px;
-            max-width: 1600px;
-            margin: 0 auto;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .service-item {
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: #f5f5f5;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: #999;
-            border-radius: 50%;
-        }
-
-        .service-title {
-            font-size: 13px;
-            margin-bottom: 10px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .service-desc {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        .service-link {
-            font-size: 11px;
-            color: #000;
-            text-decoration: underline;
-            margin-top: 8px;
-            display: inline-block;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: #fafafa;
-            padding: 60px 50px;
-            text-align: center;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .newsletter h3 {
-            font-size: 16px;
-            letter-spacing: 1.5px;
-            margin-bottom: 15px;
-            font-weight: 500;
-        }
-
-        .newsletter p {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 25px;
-            font-weight: 300;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px 20px;
-            border: 1px solid #ddd;
-            font-size: 12px;
-            letter-spacing: 0.5px;
-            font-family: 'Lato', sans-serif;
-        }
-
-        .newsletter-form button {
-            padding: 14px 35px;
-            background: #06132E;
-            color: white;
-            border: none;
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-
-        .newsletter-form button:hover {
-            background: #0a1842;
-        }
-
-        /* Footer */
-        footer {
-            background: #fafafa;
-            padding: 70px 50px 40px;
-            border-top: 1px solid #e5e5e5;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 60px;
-            max-width: 1600px;
-            margin: 0 auto 50px;
-        }
-
-        .footer-section h4 {
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 12px;
-        }
-
-        .footer-section a {
-            color: #666;
-            text-decoration: none;
-            font-size: 12px;
-            transition: color 0.2s;
-            font-weight: 300;
-        }
-
-        .footer-section a:hover {
-            color: #000;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 25px;
-        }
-
-        .footer-social a {
-            color: #666;
-            font-size: 11px;
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: color 0.2s;
-        }
-
-        .footer-social a:hover {
-            color: #000;
-        }
-
-        .footer-copyright {
-            font-size: 11px;
-            color: #999;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 1024px) {
-            .product-carousel {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .product-carousel {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero-subtitle {
-                font-size: 32px;
-            }
-
-            .nav-top {
-                padding: 18px 25px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -589,260 +758,276 @@
                 <li><a href="#">Love & Engagement</a></li>
                 <li><a href="#">Gifts</a></li>
             </ul>
+
+```
+        <div class="logo">BASTOS</div>
+        
+        <div class="nav-icons">
+            <a href="#">Stores</a>
+            <a href="#">Account</a>
+            <a href="#" id="cart-btn">Cart <span class="cart-count" id="cart-count">0</span></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <!-- Free stock jewelry video from Coverr.co -->
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="https://coverr.co/videos/sparkling-diamonds-6319/download" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+        <p class="hero-subtitle">With Love, Since 1837</p>
+        <h1 class="hero-title">Knot by BASTOS</h1>
+        <a href="#products" class="hero-cta">SHOP NOW</a>
+    </div>
+</section>
+
+<!-- Product Carousel -->
+<section class="carousel-section" id="products">
+    <div class="carousel-header">
+        <h2>New Arrivals</h2>
+        <p class="main-title">Featured Collection</p>
+    </div>
+    <div class="product-carousel" id="product-carousel"></div>
+</section>
+
+<!-- Shop by Category -->
+<section class="category-section">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="category-grid">
+        <div class="category-item">
+            <div class="category-image">CATEGORY IMAGE</div>
+            <div class="category-info">
+                <p class="category-name">Necklaces & Pendants</p>
+                <p class="category-count">9,520 products</p>
+                <a href="#" class="category-link">Shop Now</a>
+            </div>
+        </div>
+        <div class="category-item">
+            <div class="category-image">CATEGORY IMAGE</div>
+            <div class="category-info">
+                <p class="category-name">Rings</p>
+                <p class="category-count">51,997 products</p>
+                <a href="#" class="category-link">Shop Now</a>
+            </div>
+        </div>
+        <div class="category-item">
+            <div class="category-image">CATEGORY IMAGE</div>
+            <div class="category-info">
+                <p class="category-name">Earrings</p>
+                <p class="category-count">5,872 products</p>
+                <a href="#" class="category-link">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statement Banner -->
+<section class="statement-banner">
+    <div class="statement-content">
+        <h2>The Ultimate Symbol of Love</h2>
+        <p>Since Charles Lewis BASTOS introduced the world to the engagement ring in 1886, BASTOS has been at the center of the world's greatest love stories.</p>
+        <a href="#" class="hero-cta">DISCOVER ENGAGEMENT RINGS</a>
+    </div>
+</section>
+
+<!-- Product Detail Modal -->
+<div class="modal" id="product-modal">
+    <div class="modal-content">
+        <span class="modal-close" id="modal-close">&times;</span>
+        <div class="modal-body">
+            <div class="modal-images">
+                <div class="modal-main-image" id="modal-main-image">JEWELRY IMAGE</div>
+                <div class="modal-thumbnails">
+                    <div class="modal-thumbnail active">IMG 1</div>
+                    <div class="modal-thumbnail">IMG 2</div>
+                    <div class="modal-thumbnail">IMG 3</div>
+                    <div class="modal-thumbnail">IMG 4</div>
+                </div>
+            </div>
+            <div class="modal-info">
+                <p class="modal-collection" id="modal-collection"></p>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-price" id="modal-price"></p>
+                <div class="modal-description">
+                    <p id="modal-description"></p>
+                </div>
+                <div class="modal-details">
+                    <h3>Product Details</h3>
+                    <ul>
+                        <li>18k Yellow Gold</li>
+                        <li>Diamonds, total carat weight 0.25</li>
+                        <li>Size: Small</li>
+                        <li>Chain length: 16 inches</li>
+                        <li>Lobster clasp</li>
+                    </ul>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-add-cart" id="btn-add-cart">ADD TO CART</button>
+                    <button class="btn-stores" id="btn-find-stores">FIND IN STORE</button>
+                </div>
+                <div class="store-finder" id="store-finder">
+                    <h4>Available at these stores near you:</h4>
+                    <div class="store-item">
+                        <div class="store-name">BASTOS Fifth Avenue</div>
+                        <div class="store-address">727 Fifth Avenue, New York, NY 10022<br>Phone: (212) 755-8000</div>
+                    </div>
+                    <div class="store-item">
+                        <div class="store-name">BASTOS Beverly Hills</div>
+                        <div class="store-address">210 N Rodeo Dr, Beverly Hills, CA 90210<br>Phone: (310) 273-8880</div>
+                    </div>
+                    <div class="store-item">
+                        <div class="store-name">BASTOS San Francisco</div>
+                        <div class="store-address">350 Post St, San Francisco, CA 94108<br>Phone: (415) 781-7000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Modal -->
+<div class="cart-modal" id="cart-modal">
+    <div class="cart-header">
+        <h3>Shopping Cart</h3>
+        <span class="cart-close" id="cart-close">&times;</span>
+    </div>
+    <div class="cart-items" id="cart-items">
+        <div class="cart-empty">Your cart is empty</div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display: none;">
+        <div class="cart-total">
+            <span>Total:</span>
+            <span id="cart-total">$0</span>
+        </div>
+        <button class="cart-checkout">PROCEED TO CHECKOUT</button>
+    </div>
+</div>
+
+<script>
+    const products = [
+        { id: 1, collection: "BASTOS Knot", name: "Pendant in Yellow Gold with Diamonds", price: 5800, image: "JEWELRY IMAGE 1", description: "A stunning piece featuring ethically sourced diamonds set in 18k yellow gold." },
+        { id: 2, collection: "BASTOS Knot", name: "Wire Bangle in Yellow Gold with Diamonds", price: 9500, image: "JEWELRY IMAGE 2", description: "Elegant wire bangle showcasing brilliant diamonds in luxurious 18k yellow gold." },
+        { id: 3, collection: "BASTOS Knot", name: "Ring in Rose Gold and Platinum with Diamonds", price: 2950, image: "JEWELRY IMAGE 3", description: "Beautiful combination of rose gold and platinum adorned with sparkling diamonds." },
+        { id: 4, collection: "BASTOS Lock", name: "Small Pendant in Rose Gold and Platinum", price: 3400, image: "JEWELRY IMAGE 4", description: "Delicate pendant featuring iconic lock design in precious metals." },
+        { id: 5, collection: "BASTOS HardWear", name: "Medium Link Earrings in Yellow Gold", price: 3500, image: "JEWELRY IMAGE 5", description: "Bold yet elegant earrings with distinctive link design." },
+        { id: 6, collection: "BASTOS T", name: "Smile Pendant in Yellow Gold, Small", price: 1375, image: "JEWELRY IMAGE 6", description: "Charming smile pendant perfect for everyday elegance." }
+    ];
+
+    let cart = [];
+
+    function renderProducts() {
+        const carousel = document.getElementById('product-carousel');
+        carousel.innerHTML = products.map(product => `
+            <div class="product-item" onclick="openProductModal(${product.id})">
+                <div class="product-image">${product.image}</div>
+                <p class="product-collection">${product.collection}</p>
+                <p class="product-name">${product.name}</p>
+                <p class="product-price">$${product.price.toLocaleString()}</p>
+            </div>
+        `).join('');
+    }
+
+    function openProductModal(productId) {
+        const product = products.find(p => p.id === productId);
+        document.getElementById('modal-collection').textContent = product.collection;
+        document.getElementById('modal-title').textContent = product.name;
+        document.getElementById('modal-price').textContent = '$' + product.price.toLocaleString();
+        document.getElementById('modal-description').textContent = product.description;
+        document.getElementById('modal-main-image').textContent = product.image;
+        
+        const modal = document.getElementById('product-modal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        modal.dataset.currentProduct = productId;
+    }
+
+    document.getElementById('modal-close').onclick = function() {
+        document.getElementById('product-modal').classList.remove('active');
+        document.getElementById('store-finder').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
+
+    document.getElementById('cart-close').onclick = function() {
+        document.getElementById('cart-modal').classList.remove('active');
+    };
+
+    document.getElementById('btn-find-stores').onclick = function() {
+        document.getElementById('store-finder').classList.toggle('active');
+    };
+
+    document.getElementById('btn-add-cart').onclick = function() {
+        const modal = document.getElementById('product-modal');
+        const productId = parseInt(modal.dataset.currentProduct);
+        const product = products.find(p => p.id === productId);
+        
+        cart.push(product);
+        updateCart();
+        
+        modal.classList.remove('active');
+        document.getElementById('cart-modal').classList.add('active');
+        document.body.style.overflow = 'auto';
+    };
+
+    function updateCart() {
+        const cartCount = document.getElementById('cart-count');
+        const cartItems = document.getElementById('cart-items');
+        const cartFooter = document.getElementById('cart-footer');
+        const cartTotal = document.getElementById('cart-total');
+        
+        cartCount.textContent = cart.length;
+        
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<div class="cart-empty">Your cart is empty</div>';
+            cartFooter.style.display = 'none';
+        } else {
+            cartItems.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <div class="cart-item-image">${item.image}</div>
+                    <div class="cart-item-info">
+                        <div>
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">$${item.price.toLocaleString()}</div>
+                        </div>
+                        <div class="cart-item-remove" onclick="removeFromCart(${index})">Remove</div>
+                    </div>
+                </div>
+            `).join('');
             
-            <div class="logo">BASTOS</div>
-            
-            <div class="nav-icons">
-                <a href="#">Stores</a>
-                <a href="#">Account</a>
-                <a href="#" id="cart-btn">Cart <span class="cart-count">0</span></a>
-            </div>
-        </div>
-    </nav>
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            cartTotal.textContent = '$' + total.toLocaleString();
+            cartFooter.style.display = 'block';
+        }
+    }
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p class="hero-title">With Love, Since 1837</p>
-            <h1 class="hero-subtitle">Swan by BASTOS</h1>
-            <a href="#products" class="hero-cta">SHOP NOW</a>
-        </div>
-    </section>
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
 
-    <!-- Product Carousel -->
-    <section class="carousel-section" id="products">
-        <div class="carousel-header">
-            <h2>New Arrivals</h2>
-            <p class="main-title">Featured Collection</p>
-        </div>
-        <div class="product-carousel">
-            <div class="product-item" onclick="alert('Product details coming soon!')">
-                <div class="product-image">JEWELRY IMAGE</div>
-                <p class="product-collection">BASTOS Knot</p>
-                <p class="product-name">Pendant in Yellow Gold with Diamonds</p>
-                <p class="product-price">$5,800</p>
-            </div>
-            <div class="product-item" onclick="alert('Product details coming soon!')">
-                <div class="product-image">JEWELRY IMAGE</div>
-                <p class="product-collection">BASTOS Knot</p>
-                <p class="product-name">Wire Bangle in Yellow Gold with Diamonds</p>
-                <p class="product-price">$9,500</p>
-            </div>
-            <div class="product-item" onclick="alert('Product details coming soon!')">
-                <div class="product-image">JEWELRY IMAGE</div>
-                <p class="product-collection">BASTOS Knot</p>
-                <p class="product-name">Ring in Rose Gold and Platinum with Diamonds</p>
-                <p class="product-price">$2,950</p>
-            </div>
-            <div class="product-item" onclick="alert('Product details coming soon!')">
-                <div class="product-image">JEWELRY IMAGE</div>
-                <p class="product-collection">BASTOS Lock</p>
-                <p class="product-name">Small Pendant in Rose Gold and Platinum</p>
-                <p class="product-price">$3,400</p>
-            </div>
-            <div class="product-item" onclick="alert('Product details coming soon!')">
-                <div class="product-image">JEWELRY IMAGE</div>
-                <p class="product-collection">BASTOS HardWear</p>
-                <p class="product-name">Medium Link Earrings in Yellow Gold</p>
-                <p class="product-price">$3,500</p>
-            </div>
-            <div class="product-item" onclick="alert('Product details coming soon!')">
-                <div class="product-image">JEWELRY IMAGE</div>
-                <p class="product-collection">BASTOS T</p>
-                <p class="product-name">Smile Pendant in Yellow Gold, Small</p>
-                <p class="product-price">$1,375</p>
-            </div>
-        </div>
-        <div class="carousel-cta">
-            <a href="#">SHOP NOW</a>
-        </div>
-    </section>
+    document.getElementById('cart-btn').onclick = function(e) {
+        e.preventDefault();
+        document.getElementById('cart-modal').classList.add('active');
+    };
 
-    <!-- Shop by Category -->
-    <section class="category-section">
-        <h2 class="section-title">Shop by Category</h2>
-        <div class="category-grid">
-            <div class="category-item" onclick="window.location.href='#'">
-                <div class="category-image">NECKLACES & PENDANTS</div>
-                <div class="category-info">
-                    <p class="category-name">Necklaces & Pendants</p>
-                    <p class="category-count">9,520 products</p>
-                    <a href="#" class="category-link">Shop Now</a>
-                </div>
-            </div>
-            <div class="category-item" onclick="window.location.href='#'">
-                <div class="category-image">RINGS</div>
-                <div class="category-info">
-                    <p class="category-name">Rings</p>
-                    <p class="category-count">51,997 products</p>
-                    <a href="#" class="category-link">Shop Now</a>
-                </div>
-            </div>
-            <div class="category-item" onclick="window.location.href='#'">
-                <div class="category-image">EARRINGS</div>
-                <div class="category-info">
-                    <p class="category-name">Earrings</p>
-                    <p class="category-count">5,872 products</p>
-                    <a href="#" class="category-link">Shop Now</a>
-                </div>
-            </div>
-            <div class="category-item" onclick="window.location.href='#'">
-                <div class="category-image">BRACELETS</div>
-                <div class="category-info">
-                    <p class="category-name">Bracelets</p>
-                    <p class="category-count">1,288 products</p>
-                    <a href="#" class="category-link">Shop Now</a>
-                </div>
-            </div>
-            <div class="category-item" onclick="window.location.href='#'">
-                <div class="category-image">LOVE & ENGAGEMENT</div>
-                <div class="category-info">
-                    <p class="category-name">Love & Engagement</p>
-                    <p class="category-count">50,166 products</p>
-                    <a href="#" class="category-link">Shop Now</a>
-                </div>
-            </div>
-            <div class="category-item" onclick="window.location.href='#'">
-                <div class="category-image">HIGH JEWELRY</div>
-                <div class="category-info">
-                    <p class="category-name">High Jewelry</p>
-                    <p class="category-count">1,792 products</p>
-                    <a href="#" class="category-link">Shop Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    document.getElementById('product-modal').onclick = function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+            document.getElementById('store-finder').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    };
 
-    <!-- Statement Banner -->
-    <section class="statement-banner">
-        <div class="statement-content">
-            <h2>The Ultimate Symbol of Love</h2>
-            <p>Since Charles Lewis BASTOS introduced the world to the engagement ring in 1886, BASTOS has been at the center of the world's greatest love stories. Each piece is crafted with exceptional diamonds and unparalleled artistry.</p>
-            <a href="#" class="hero-cta">DISCOVER ENGAGEMENT RINGS</a>
-        </div>
-    </section>
+    document.querySelector('.logo').onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
-    <!-- Services -->
-    <section class="services">
-        <div class="service-item" onclick="alert('Booking appointment...')">
-            <div class="service-icon">ICON</div>
-            <h3 class="service-title">Book an Appointment</h3>
-            <p class="service-desc">Contact us to book in-store or virtual appointments with our jewelry experts.</p>
-            <a href="#" class="service-link">Learn More</a>
-        </div>
-        <div class="service-item">
-            <div class="service-icon">ICON</div>
-            <h3 class="service-title">Complimentary Shipping & Returns</h3>
-            <p class="service-desc">Enjoy complimentary shipping and returns on all orders. Free gift wrapping included.</p>
-            <a href="#" class="service-link">Learn More</a>
-        </div>
-        <div class="service-item">
-            <div class="service-icon">ICON</div>
-            <h3 class="service-title">At Your Service</h3>
-            <p class="service-desc">Our client advisors are always here to help with any questions or assistance you need.</p>
-            <a href="#" class="service-link">Contact Us</a>
-        </div>
-        <div class="service-item">
-            <div class="service-icon">ICON</div>
-            <h3 class="service-title">Iconic Blue Box</h3>
-            <p class="service-desc">Every purchase comes wrapped in our signature blue box packaging and white ribbon.</p>
-            <a href="#" class="service-link">Learn More</a>
-        </div>
-    </section>
+    // Initialize
+    renderProducts();
+</script>
+```
 
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <h3>LATEST FROM BASTOS</h3>
-        <p>Be the first to know about new collections, exclusive designs, and special offers.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
-            <input type="email" placeholder="Email Address" required>
-            <button type="submit">SIGN UP</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>SUPPORT</h4>
-                <ul>
-                    <li><a href="#">Track Your Order</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Frequently Asked Questions</a></li>
-                    <li><a href="#">Shipping & Return Policy</a></li>
-                    <li><a href="#">Store Information</a></li>
-                    <li><a href="#">Site Index</a></li>
-                    <li><a href="#">Gift Card</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>SERVICES</h4>
-                <ul>
-                    <li><a href="#">Contact a Diamond Expert</a></li>
-                    <li><a href="#">Request Repair</a></li>
-                    <li><a href="#">Personalization</a></li>
-                    <li><a href="#">Business Accounts</a></li>
-                    <li><a href="#">Select Financing</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>ABOUT</h4>
-                <ul>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">BASTOS Foundation</a></li>
-                    <li><a href="#">BASTOS Careers</a></li>
-                    <li><a href="#">For the Press</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>LEGAL</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Accessibility Statement</a></li>
-                    <li><a href="#">Transparency in Coverage</a></li>
-                    <li><a href="#">California Privacy</a></li>
-                    <li><a href="#">Product Safety</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-social">
-                <a href="#">Instagram</a>
-                <a href="#">Twitter</a>
-                <a href="#">Facebook</a>
-                <a href="#">YouTube</a>
-                <a href="#">Pinterest</a>
-            </div>
-            <p class="footer-copyright">T&Co. 2026 BASTOS</p>
-        </div>
-    </footer>
-
-    <script>
-        // Cart functionality
-        let cartCount = 0;
-        document.getElementById('cart-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Cart is empty. Add some beautiful jewelry!');
-        });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Logo click
-        document.querySelector('.logo').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
 </body>
 </html>
